@@ -578,4 +578,4 @@ async function clean(text) {
         return text;
 }
 
-bot.login(config.token)
+bot.login(process.env.BOT_TOKEN)
