@@ -50,7 +50,7 @@ client.on('message', async message => {
         message.delete();
         if(!message.mentions.users.first()) return;
         config.developers.push(message.mentions.users.first().id)
-        fs.writeFile('${__dirname}./config.json', JSON.stringify(config),(err) => {
+        fs.writeFile('${__dirname}/config.json', JSON.stringify(config),(err) => {
             if(err) console.log(err);
         });
         message.channel.send(`${message.mentions.users.first()}, \`вам были выданы права разработчика.\``);
