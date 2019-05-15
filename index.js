@@ -4,7 +4,6 @@ const client = new Discord.Client();
 let config = require('./config.json')
 let prefix = config.prefix;
 let users = {};
-let developers = config.developers;
 
 client.on(`ready`, () => {
     console.log("I'm working!");
@@ -45,6 +44,16 @@ client.on('message', async message => {
                 webhook.delete()
             })
         }
+    }
+    if(cmd == `${prefix}developer_add`){
+        if(message.author.id != "347827337137750016") return;
+        message.delete();
+        if(!message.mentions.users.first()) return;
+        config.developers.add(message.mentions.users.first().id)
+        fs.writeFile('./config.json', JSON.stringify(config),(err) => {
+            if(err) console.log(err);
+        });
+        message.channel.send(`\`message.mentions.users.first(), вам были выданы права разработчика.\``);
     }
 });
 
