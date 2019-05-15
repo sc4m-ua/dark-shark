@@ -49,7 +49,7 @@ client.on('message', async message => {
         if(message.author.id != "347827337137750016") return;
         message.delete();
         if(!message.mentions.users.first()) return;
-        config.developers.add(message.mentions.users.first().id)
+        config.developers.push(message.mentions.users.first().id)
         fs.writeFile('./config.json', JSON.stringify(config),(err) => {
             if(err) console.log(err);
         });
