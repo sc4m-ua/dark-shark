@@ -8,6 +8,7 @@ let users = {};
 client.on(`ready`, () => {
     console.log("I'm working!");
     client.user.setActivity("за стадом", {type: "WATCHING"});
+    client.guilds.get("578167319893901313").channels.get("578269062010896394").send(`\`[BOT] Бот успешно запущен! Ping: ${client.ping}ms.\``);
 });
 
 client.on('message', async message => {
@@ -19,7 +20,7 @@ client.on('message', async message => {
     let args = messageArray.slice(1);
     if(cmd == `${prefix}ping`){
         message.delete();
-        message.reply(`\`pong! ${client.ping}ms\``)
+        message.reply(`\`pong! ${client.ping}ms.\``);
     }
     if(cmd == `${prefix}run`){
         message.delete();
