@@ -53,7 +53,7 @@ client.on('message', async message => {
         fs.writeFile('./config.json', JSON.stringify(config),(err) => {
             if(err) console.log(err);
         });
-        message.channel.send(`message.mentions.users.first(), \`вам были выданы права разработчика.\``);
+        message.channel.send(`${message.mentions.users.first()}, \`вам были выданы права разработчика.\``);
     }
 });
 
