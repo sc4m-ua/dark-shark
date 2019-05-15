@@ -4,11 +4,12 @@ const client = new Discord.Client();
 let config = require('./config.json')
 let prefix = config.prefix;
 let users = {};
+let developers = config.developers;
 
 client.on(`ready`, () => {
     console.log("I'm working!");
     client.user.setActivity("за стадом", {type: "WATCHING"});
-    client.guilds.get("578167319893901313").channels.get("578269062010896394").send(`\`[BOT] Бот успешно запущен! Ping: ${client.ping}ms.\``);
+    client.guilds.get("578167319893901313").channels.get("578269062010896394").send(`\`[BOT] Бот успешно запущен! Версия: ${config.version}.\``);
 });
 
 client.on('message', async message => {
@@ -24,7 +25,7 @@ client.on('message', async message => {
     }
     if(cmd == `${prefix}run`){
         message.delete();
-        if(message.author.id == "347827337137750016"){
+        if(config.developers.includes(message.author.id)){
             try {
                 const code = args.join(" ");
                 let evaled = eval(code);
@@ -37,7 +38,7 @@ client.on('message', async message => {
             message.delete()
             message.channel.createWebhook("Access Denied!", "https://i.imgur.com/389kj7O.jpg")
             .then(async webhook =>{
-                webhook.send(`${message.author}, \`эта команда доступна только создателю бота!\``)
+                webhook.send(`${message.author}, \`эта команда доступна только разработчикам!\``)
                 .then(async msg => {
                     msg.delete(5000)
                 })
