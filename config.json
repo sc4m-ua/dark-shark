@@ -1,4 +1,6 @@
 {
     "prefix": "zagon",
-    "token": ""
+    "token": "",
+    "developers": ['578251103335088169'],
+    version: 1.0.1
 }
